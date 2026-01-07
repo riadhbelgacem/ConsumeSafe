@@ -1,3 +1,9 @@
+- name: Copy kubeconfig to temp location
+  ansible.builtin.copy:
+    src: "{{ kubeconfig }}"
+    dest: /tmp/kubeconfig-jenkins
+    mode: '0600'
+
 - name: Replace image tag in deployment manifest
   ansible.builtin.replace:
     path: "{{ playbook_dir }}/../k8s/deployment.yaml"
@@ -6,17 +12,22 @@
 
 - name: Apply Kubernetes deployment manifest
   ansible.builtin.shell: |
-    kubectl apply -f {{ playbook_dir }}/../k8s/deployment.yaml --kubeconfig="{{ kubeconfig }}" --insecure-skip-tls-verify --validate=false
+    kubectl apply -f {{ playbook_dir }}/../k8s/deployment.yaml --kubeconfig=/tmp/kubeconfig-jenkins --insecure-skip-tls-verify --validate=false
   changed_when: true
 
 - name: Apply Kubernetes service manifest
   ansible.builtin.shell: |
-    kubectl apply -f {{ playbook_dir }}/../k8s/service.yaml --kubeconfig="{{ kubeconfig }}" --insecure-skip-tls-verify --validate=false
+    kubectl apply -f {{ playbook_dir }}/../k8s/service.yaml --kubeconfig=/tmp/kubeconfig-jenkins --insecure-skip-tls-verify --validate=false
   changed_when: true
 
 - name: Apply Kubernetes ingress manifest
   ansible.builtin.shell: |
-    kubectl apply -f {{ playbook_dir }}/../k8s/ingress.yaml --kubeconfig="{{ kubeconfig }}" --insecure-skip-tls-verify --validate=false
+    kubectl apply -f {{ playbook_dir }}/../k8s/ingress.yaml --kubeconfig=/tmp/kubeconfig-jenkins --insecure-skip-tls-verify --validate=false
   changed_when: true
+
+- name: Clean up temp kubeconfig
+  ansible.builtin.file:
+    path: /tmp/kubeconfig-jenkins
+    state: absent
 
 
