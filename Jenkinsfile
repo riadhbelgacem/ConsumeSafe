@@ -67,6 +67,11 @@ pipeline {
           sh '''
             export BUILD_TAG=${BUILD_TAG}
             export KUBECONFIG=${KUBECONFIG}
+            
+            # Install Ansible collections
+            ansible-galaxy collection install -r playbooks/requirements.yml
+            
+            # Run deployment playbook
             echo "$VAULT_PASS" | ansible-playbook -i localhost, playbooks/deploy.yml --vault-password-file /dev/stdin --extra-vars "image_tag=${BUILD_TAG}"
           '''
         }
