@@ -30,7 +30,7 @@ pipeline {
 
     stage('SonarQube') {
       steps {
-        withSonarQubeEnv('sonarqube') {
+        withSonarQubeEnv('MySonarQubeServer') {
           sh 'sonar-scanner -Dsonar.projectKey=boycott-app'
         }
       }
