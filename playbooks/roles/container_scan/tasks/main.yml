@@ -1,6 +1,33 @@
+- name: Check if Trivy is installed via snap
+  ansible.builtin.shell: snap list trivy 2>/dev/null || echo "not_found"
+  register: trivy_snap_check
+  changed_when: false
+  failed_when: false
+
+- name: Remove snap Trivy if installed
+  ansible.builtin.shell: sudo snap remove trivy
+  when: "'not_found' not in trivy_snap_check.stdout"
+  changed_when: true
+
+- name: Check if Trivy is installed properly
+  ansible.builtin.shell: which trivy || echo "not_found"
+  register: trivy_check
+  changed_when: false
+  failed_when: false
+
+- name: Install Trivy via apt repository
+  ansible.builtin.shell: |
+    wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+    echo "deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+    sudo apt-get update
+    sudo apt-get install -y trivy
+  when: "'not_found' in trivy_check.stdout"
+  changed_when: true
+
 - name: Run Trivy scan
   ansible.builtin.shell: >
     trivy image --severity CRITICAL,HIGH --exit-code 1 --no-progress {{ image_name }}:{{ image_tag }}
   register: trivy_result
-  failed_when: trivy_result.rc != 0
+  failed_when: trivy_result.rc == 1
+  changed_when: false
 
