@@ -1,10 +1,6 @@
 pipeline {
   agent any
   
-  tools {
-    nodejs 'NodeJS-20'  // This must match the name you configured in Jenkins Tools
-  }
-  
   environment {
     BUILD_TAG = "${env.GIT_COMMIT?.substring(0,8) ?: 'manual'}"
   }
@@ -15,7 +11,9 @@ pipeline {
     }
 
     stage('Install') {
-      steps { sh 'npm ci' }
+      steps { 
+        sh 'npm install'
+      }
     }
 
     stage('Lint') {
