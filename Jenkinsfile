@@ -7,6 +7,7 @@ pipeline {
   
   environment {
     BUILD_TAG = "${env.GIT_COMMIT?.substring(0,8) ?: 'manual'}"
+    SCANNER_HOME = tool 'MySonarQubeScanner'
   }
 
   stages {
@@ -31,7 +32,7 @@ pipeline {
     stage('SonarQube') {
       steps {
         withSonarQubeEnv('MySonarQubeServer') {
-          sh 'sonar-scanner -Dsonar.projectKey=boycott-app'
+          sh '${SCANNER_HOME}/bin/sonar-scanner -Dsonar.projectKey=boycott-app'
         }
       }
     }
