@@ -61,17 +61,13 @@ pipeline {
     stage('Invoke Ansible Release') {
       steps {
         withCredentials([
-          string(credentialsId: 'VAULT_TOKEN', variable: 'VAULT_TOKEN'),        // or obtain token dynamically
-          usernamePassword(credentialsId: 'DOCKER_REGISTRY_CRED', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS'),
-          file(credentialsId: 'KUBECONFIG_FILE', variable: 'KUBECONFIG')
+          string(credentialsId: 'ansible-vault-password', variable: 'VAULT_PASS'),
+          file(credentialsId: 'kubeconfig-file', variable: 'KUBECONFIG')
         ]) {
           sh '''
             export BUILD_TAG=${BUILD_TAG}
-            export VAULT_ADDR=https://vault.example.com
-            export VAULT_TOKEN=${VAULT_TOKEN}
-            export DOCKER_USER=${DOCKER_USER}
-            export DOCKER_PASS=${DOCKER_PASS}
-            ansible-playbook -i localhost, playbooks/deploy.yml --extra-vars "image_tag=${BUILD_TAG}"
+            export KUBECONFIG=${KUBECONFIG}
+            echo "$VAULT_PASS" | ansible-playbook -i localhost, playbooks/deploy.yml --vault-password-file /dev/stdin --extra-vars "image_tag=${BUILD_TAG}"
           '''
         }
       }

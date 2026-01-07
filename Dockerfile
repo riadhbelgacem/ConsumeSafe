@@ -4,11 +4,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
-RUN npm run build --prod
+RUN npm run build
 
 # Stage 2: Serve with Nginx
 FROM nginx:alpine
-COPY --from=build /app/dist/ConsumeSafe /usr/share/nginx/html
+COPY --from=build /app/dist/consume-safe/browser /usr/share/nginx/html
 
 # Optional: replace default nginx.conf with custom one
 COPY nginx.conf /etc/nginx/conf.d/default.conf

@@ -1,15 +1,18 @@
 - hosts: localhost
   gather_facts: false
+  vars_files:
+    - vault.yml
   vars:
     image_name: "registry.example.com/boycott-app"
     image_tag: "{{ image_tag | default('latest') }}"
     kubeconfig: "{{ lookup('env','KUBECONFIG') }}"
-    vault_addr: "{{ lookup('env','VAULT_ADDR') }}"
-    vault_token: "{{ lookup('env','VAULT_TOKEN') }}"
+  environment:
+    DOCKER_USER: "{{ docker_registry_user }}"
+    DOCKER_PASS: "{{ docker_registry_password }}"
   roles:
     - role: build_and_push_image
     - role: container_scan
     - role: deploy_k8s
     - role: monitoring_stack
-    - role: configure_secrets_from_vault
+    # - role: configure_secrets_from_vault  # Disabled - not using HashiCorp Vault
 
