@@ -1,7 +1,19 @@
-- name: Apply Kubernetes manifests (deployment + service)
+- name: Apply Kubernetes deployment manifest
   community.kubernetes.k8s:
     kubeconfig: "{{ kubeconfig }}"
     state: present
-    src: k8s/deployment.yaml
+    src: "{{ playbook_dir }}/../k8s/deployment.yaml"
+
+- name: Apply Kubernetes service manifest
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    state: present
+    src: "{{ playbook_dir }}/../k8s/service.yaml"
+
+- name: Apply Kubernetes ingress manifest
+  community.kubernetes.k8s:
+    kubeconfig: "{{ kubeconfig }}"
+    state: present
+    src: "{{ playbook_dir }}/../k8s/ingress.yaml"
 
 
