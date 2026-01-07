@@ -1,6 +1,6 @@
 - name: Login to registry (docker CLI)
   ansible.builtin.shell: >
-    echo "{{ lookup('env','DOCKER_PASS') }}" | docker login registry.example.com -u "{{ lookup('env','DOCKER_USER') }}" --password-stdin
+    echo "{{ docker_registry_password }}" | docker login {{ docker_registry | default('docker.io') }} -u "{{ docker_registry_user }}" --password-stdin
   changed_when: false
 
 - name: Build docker image

@@ -4,9 +4,10 @@
   vars_files:
     - vault.yml
   vars:
-    image_name: "registry.example.com/boycott-app"
+    image_name: "riadh2002/consume-safe"
     image_tag: "{{ image_tag | default('latest') }}"
     kubeconfig: "{{ lookup('env','KUBECONFIG') }}"
+    docker_registry: "docker.io"
   environment:
     DOCKER_USER: "{{ docker_registry_user }}"
     DOCKER_PASS: "{{ docker_registry_password }}"
