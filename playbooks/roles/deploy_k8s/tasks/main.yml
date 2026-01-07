@@ -3,17 +3,20 @@
     kubeconfig: "{{ kubeconfig }}"
     state: present
     src: "{{ playbook_dir }}/../k8s/deployment.yaml"
+    validate_certs: no
 
 - name: Apply Kubernetes service manifest
   community.kubernetes.k8s:
     kubeconfig: "{{ kubeconfig }}"
     state: present
     src: "{{ playbook_dir }}/../k8s/service.yaml"
+    validate_certs: no
 
 - name: Apply Kubernetes ingress manifest
   community.kubernetes.k8s:
     kubeconfig: "{{ kubeconfig }}"
     state: present
     src: "{{ playbook_dir }}/../k8s/ingress.yaml"
+    validate_certs: no
 
 
