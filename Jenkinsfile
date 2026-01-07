@@ -25,7 +25,7 @@ pipeline {
     }
 
     stage('Test') {
-      steps { sh 'npm test -- --watch=false' }
+      steps { sh 'npm test -- --watch=false --browsers=ChromeHeadlessCI' }
     }
 
     stage('SonarQube') {
