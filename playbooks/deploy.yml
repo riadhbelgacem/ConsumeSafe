@@ -13,6 +13,4 @@
     - role: build_and_push_image
     - role: container_scan
     - role: deploy_k8s
-    - role: monitoring_stack
-    # - role: configure_secrets_from_vault  # Disabled - not using HashiCorp Vault
 
