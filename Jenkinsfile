@@ -1,6 +1,10 @@
 pipeline {
   agent any
   
+  tools {
+    nodejs 'NodeJS-20'
+  }
+  
   environment {
     BUILD_TAG = "${env.GIT_COMMIT?.substring(0,8) ?: 'manual'}"
   }
