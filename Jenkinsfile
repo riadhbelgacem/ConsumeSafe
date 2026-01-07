@@ -1,5 +1,10 @@
 pipeline {
   agent any
+  
+  tools {
+    nodejs 'NodeJS-20'  // This must match the name you configured in Jenkins Tools
+  }
+  
   environment {
     BUILD_TAG = "${env.GIT_COMMIT?.substring(0,8) ?: 'manual'}"
   }
@@ -68,10 +73,6 @@ pipeline {
         }
       }
     }
-  }
-
-  post {
-    failure { mail to: 'team@example.com', subject: "Build failed: ${env.JOB_NAME}", body: "Check Jenkins" }
   }
 }
 
