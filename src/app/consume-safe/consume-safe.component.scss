@@ -1,0 +1,121 @@
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  margin-top: 150px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  color: #2c5f2d;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.slogan {
+  font-size: 1.2em;
+  color: #555;
+  line-height: 1.6;
+}
+
+.sub-slogan {
+  font-size: 0.9em;
+  color: #777;
+  font-style: italic;
+}
+
+.search-section {
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  border-color: #2c5f2d;
+}
+
+.search-button {
+  padding: 12px 30px;
+  background: #2c5f2d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.search-button:hover {
+  background: #1e4620;
+}
+
+.result-box {
+  margin-top: 20px;
+}
+
+.result-message {
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.boycotted {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.safe {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+}
+
+.alternatives {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  border: 2px solid #4caf50;
+}
+
+.alternatives h3 {
+  color: #2e7d32;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.alternatives ul {
+  list-style: none;
+  padding: 0;
+}
+
+.alternatives li {
+  padding: 8px;
+  margin: 5px 0;
+  background: #f1f8f4;
+  border-radius: 3px;
+  color: #1b5e20;
+}

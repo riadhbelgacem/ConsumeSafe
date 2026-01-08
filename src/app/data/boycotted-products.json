@@ -1,0 +1,84 @@
+{
+  "boycottedProducts": [
+    {
+      "name": "Coca Cola",
+      "reason": "Supporting Israeli economy",
+      "alternatives": ["Local Cola", "Pepsi", "RC Cola"]
+    },
+    {
+      "name": "Pepsico",
+      "reason": "Operates in Israeli settlements and supports Israeli military",
+      "alternatives": ["Local soda brands", "Zamzam Cola", "Cristaline water", "Homemade beverages"]
+    },
+    {
+      "name": "Starbucks",
+      "reason": "Sued union for supporting Palestine and has pro-Israel stance",
+      "alternatives": ["Local coffee shops", "Arabic coffee", "Turkish coffee brands", "Fair trade coffee"]
+    },
+    {
+      "name": "McDonald's",
+      "reason": "Israeli franchise provided free meals to Israeli military during conflicts",
+      "alternatives": ["Local burger joints", "Shawarma restaurants", "Falafel shops", "Home-cooked meals"]
+    },
+    {
+      "name": "Sabra Hummus",
+      "reason": "Partially owned by Israeli company supporting Israeli military",
+      "alternatives": ["Local hummus brands", "Homemade hummus", "Cedars Mediterranean", "Other Middle Eastern brands"]
+    },
+    {
+      "name": "HP",
+      "reason": "Provides technology to Israeli military and prison systems",
+      "alternatives": ["Dell", "Lenovo", "Asus", "Local computer brands", "Framework laptops"]
+    },
+    {
+      "name": "Caterpillar Inc.",
+      "reason": "Provides bulldozers used to demolish Palestinian homes",
+      "alternatives": ["Komatsu", "Volvo CE", "Local equipment manufacturers"]
+    },
+    {
+      "name": "AXA Insurance",
+      "reason": "Invests in Israeli banks and arms companies",
+      "alternatives": ["Local insurance companies", "Ethical banks", "Credit unions"]
+    },
+    {
+      "name": "Ahava Cosmetics",
+      "reason": "Sources minerals from Dead Sea in occupied West Bank",
+      "alternatives": ["Lush", "Local olive oil soaps", "Palestinian fair trade products", "Natural cosmetics"]
+    },
+    {
+      "name": "Puma",
+      "reason": "Sponsors Israeli Football Association including teams in settlements",
+      "alternatives": ["Adidas", "Nike", "Local sportswear brands", "New Balance"]
+    },
+    {
+      "name": "Booking.com",
+      "reason": "Lists properties in Israeli settlements in occupied territories",
+      "alternatives": ["Local travel agencies", "Direct booking with hotels", "Alternative travel sites"]
+    },
+    {
+      "name": "Ben & Jerry's (Unilever)",
+      "reason": "Sold Israeli business to local licensee continuing settlement sales",
+      "alternatives": ["Local ice cream brands", "Haagen-Dazs", "Homemade ice cream", "Ethical ice cream brands"]
+    },
+    {
+      "name": "Intel",
+      "reason": "Major investments in Israel and operations in settlements",
+      "alternatives": ["AMD processors", "Apple Silicon", "Qualcomm", "Local tech solutions"]
+    },
+    {
+      "name": "Expedia",
+      "reason": "Lists hotels in Israeli settlements in occupied territories",
+      "alternatives": ["Local travel agencies", "Direct hotel booking", "Alternative booking platforms"]
+    },
+    {
+      "name": "Carrefour",
+      "reason": "Operates in Israeli settlements through franchise",
+      "alternatives": ["Local supermarkets", "Co-ops", "Farmers markets", "Other grocery chains"]
+    },
+    {
+      "name": "Estée Lauder",
+      "reason": "Invests in Israeli companies and has pro-Israel stance",
+      "alternatives": ["Local beauty brands", "Cruelty-free brands", "DIY cosmetics", "Ethical beauty products"]
+    }
+  ]
+}

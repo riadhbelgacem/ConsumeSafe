@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="header">
+    <h1>ConsumeSafe</h1>
+    <p class="slogan">
+      🕊️ Consume Responsibly, Save Palestinian Lives<br>
+      <span class="sub-slogan">Every Purchase is a Choice for Justice</span>
+    </p>
+  </div>
+
+  <div class="search-section">
+    <div class="search-box">
+      <input 
+        type="text" 
+        [(ngModel)]="productName" 
+        placeholder="Enter product name..."
+        (keyup.enter)="searchProduct()"
+        class="search-input"
+      />
+      <button (click)="searchProduct()" class="search-button">
+        Search
+      </button>
+    </div>
+
+    <div *ngIf="searchResult" class="result-box">
+      <div 
+        [class.boycotted]="searchResult.found" 
+        [class.safe]="!searchResult.found"
+        class="result-message"
+      >
+        {{ searchResult.message }}
+      </div>
+
+      <div *ngIf="searchResult.found && searchResult.product" class="alternatives">
+        <h3>✨ Better Alternatives:</h3>
+        <ul>
+          <li *ngFor="let alt of searchResult.product.alternatives">
+            {{ alt }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
