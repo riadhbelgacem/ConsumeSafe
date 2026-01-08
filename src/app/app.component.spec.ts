@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { ConsumeSafeComponent } from './consume-safe/consume-safe.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
