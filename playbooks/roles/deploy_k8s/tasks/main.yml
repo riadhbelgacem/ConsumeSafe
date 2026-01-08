@@ -1,0 +1,55 @@
+- name: Replace image tag in deployment manifest
+  ansible.builtin.replace:
+    path: "{{ playbook_dir }}/../k8s/deployment.yaml"
+    regexp: 'IMAGE_TAG_PLACEHOLDER'
+    replace: "{{ image_tag }}"
+
+- name: Apply Kubernetes deployment
+  kubernetes.core.k8s:
+    state: present
+    namespace: default
+    src: "{{ playbook_dir }}/../k8s/deployment.yaml"
+    kubeconfig: ~/.kube/config
+    validate_certs: no
+
+- name: Apply Kubernetes service
+  kubernetes.core.k8s:
+    state: present
+    namespace: default
+    src: "{{ playbook_dir }}/../k8s/service.yaml"
+    kubeconfig: ~/.kube/config
+    validate_certs: no
+
+- name: Apply Kubernetes ingress
+  kubernetes.core.k8s:
+    state: present
+    namespace: default
+    src: "{{ playbook_dir }}/../k8s/ingress.yaml"
+    kubeconfig: ~/.kube/config
+    validate_certs: no
+
+- name: Wait for deployment to be ready
+  kubernetes.core.k8s_info:
+    kind: Deployment
+    name: consumesafe
+    namespace: default
+    kubeconfig: ~/.kube/config
+    wait: yes
+    wait_timeout: 120
+    validate_certs: no
+
+- name: Get deployment status
+  kubernetes.core.k8s_info:
+    kind: Pod
+    namespace: default
+    label_selectors:
+      - app=consumesafe
+    kubeconfig: ~/.kube/config
+    validate_certs: no
+  register: pod_info
+
+- name: Display deployment status
+  ansible.builtin.debug:
+    msg: "Deployment successful! {{ pod_info.resources | length }} pods running"
+
+

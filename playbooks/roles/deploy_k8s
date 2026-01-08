@@ -1,7 +1,0 @@
-- name: Apply Kubernetes manifests (deployment + service)
-  community.kubernetes.k8s:
-    kubeconfig: "{{ kubeconfig }}"
-    state: present
-    src: k8s/deployment.yaml
-
-

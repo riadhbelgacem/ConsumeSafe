@@ -1,6 +1,6 @@
 - name: Login to registry (docker CLI)
   ansible.builtin.shell: >
-    echo "{{ lookup('env','DOCKER_PASS') }}" | docker login registry.example.com -u "{{ lookup('env','DOCKER_USER') }}" --password-stdin
+    echo "{{ docker_registry_password }}" | docker login {{ docker_registry | default('docker.io') }} -u "{{ docker_registry_user }}" --password-stdin
   changed_when: false
 
 - name: Build docker image
@@ -9,11 +9,13 @@
       path: "{{ playbook_dir }}/../"    # repo root (contains Dockerfile)
     name: "{{ image_name }}"
     tag: "{{ image_tag }}"
+    source: build
     force_source: true
 
 - name: Push image to registry
   community.docker.docker_image:
     name: "{{ image_name }}"
     tag: "{{ image_tag }}"
+    source: local
     push: true
 
