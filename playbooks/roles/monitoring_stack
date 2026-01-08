@@ -1,0 +1,17 @@
+- name: Ensure helm repo prometheus-community
+  community.kubernetes.helm_repository:
+    name: prometheus-community
+    repo_url: https://prometheus-community.github.io/helm-charts
+
+- name: Install kube-prometheus-stack
+  community.kubernetes.helm:
+    name: kube-prometheus-stack
+    chart_ref: prometheus-community/kube-prometheus-stack
+    release_namespace: monitoring
+    kubeconfig: "{{ kubeconfig }}"
+    values:
+      # minimal values; tune as needed
+      grafana:
+        adminPassword: "{{ lookup('env','GRAFANA_ADMIN_PASS') | default('changeme') }}"
+    state: present
+
